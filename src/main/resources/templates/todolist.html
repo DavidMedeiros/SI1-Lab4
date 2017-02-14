@@ -55,7 +55,7 @@
                      </tr>
                   </thead>
                   <tbody>
-                     <tr th:each="task : ${toDoList}" >
+                     <tr th:each="task : ${todolist}" >
                         <td><a th:href="@{'/completetask/' + ${task.taskID}}"><i class="fa fa-square-o"></i></a></td>
                         <td><a th:href="@{'/edittask/' + ${task.taskID}}"><i class="fa fa-pencil-square"></i></a></td>
                         <td th:text="${task.taskName}"></td>
