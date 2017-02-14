@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>LAB3SI</groupId>
+	<groupId>LAB4SI</groupId>
 	<artifactId>ToDoList</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>ToDoList</name>
-	<description>Lab3 SI</description>
+	<name>To Do List</name>
+	<description>Laboratorio 4 - SI1</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -46,11 +46,16 @@
 	         <artifactId>h2</artifactId>
 	         <scope>runtime</scope>
 	     </dependency>-->
-	    <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-	     
+	    <!--<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+            </dependency>-->
+		
+	     <dependency>
+		  <groupId>org.postgresql</groupId>
+		  <artifactId>postgresql</artifactId>
+		  <version>9.4.1208</version>
+	     </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
