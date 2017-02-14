@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="description" content="Gerenciamento de tarefas" />
+      <meta name="author" content="Ana Barros | barros.anapaulas@gmail.com" />
+      <link rel="icon" href="http://getbootstrap.com/favicon.ico" />
+      <title>Gerenciamento de Tarefa</title>
+      <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" media="screen"/>
+      <link href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet" media="screen"/>
+      <link href="../static/css/ie10-viewport-bug-workaround.css" th:href="@{/css/ie10-viewport-bug-workaround.css}" rel="stylesheet" media="screen"/>
+      <link href="../static/css/jumbotron-narrow.css" th:href="@{/css/jumbotron-narrow.css}" rel="stylesheet" media="screen"/>
+      <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" media="screen"/>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"></script>
+      <script src="../static/js/jquery.sortElements.js" th:href="@{/js/jquery.sortElements.js}"></script>
+      <script src="../static/js/jspdf.min.js" th:href="@{/js/jspdf.min.js}"></script>
+      <script src="../static/js/app.js" th:href="@{/js/app.js}"></script>
+   </head>
+   <body>
+      <div class="container">
+         <div class="row">
+            <center>
+               <h1><span>Agenda</span> de Tarefas</h1>
+            </center>
+         </div>
+         <div class="page-header">
+            <!-- LINHA -->
+         </div>
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <strong>Editar Tarefa</strong>
+            </div>
+            <div class="panel-body">
+               <form class="form-horizontal" th:action="@{/updatetask}" th:object="${task}" method="post" enctype="multipart/form-data" id="formEdicao">
+                  <div class="form-group">
+                     <label for="name" class="col-sm-2 control-label">Tarefa:</label>
+                     <div class="col-sm-10">
+                        <input type="text" name="taskName" th:value="${task.taskName}" class="form-control" id="name"/>
+                        <input type="hidden" name="taskID" th:value="${task.taskID}" />
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label for="details" class="col-sm-2 control-label">Detalhes:</label>
+                     <div class="col-sm-10">
+                        <textarea class="form-control" name="taskDetails" th:text="${task.taskDetails}" id="details"></textarea>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">Prioridade:</label>
+                     <div class="col-sm-10">
+                        <label class="radio-inline">
+                        <input type="radio" name="priority" id="priority" value="BAIXA" /> Baixa
+                        </label>
+                        <label class="radio-inline">
+                        <input type="radio" name="priority" value="MEDIA" checked="checked" /> M&eacute;dia
+                        </label>
+                        <label class="radio-inline">
+                        <input type="radio" name="priority" value="ALTA" /> Alta
+                        </label>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label for="category" class="col-sm-2 control-label">Categoria:</label>
+                     <div class="col-sm-10">
+                        <select name="category" class="form-control" id="category">
+                           <option value="sem categoria">Selecione uma categoria</option>
+                           <option value="estudo">Estudo</option>
+                           <option value="entretenimento">Entretenimento</option>
+                           <option value="financas">Financas</option>
+                           <option value="compras">Compras</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label"></label>
+                     <div class="col-sm-10">
+                        <div class="radio">
+                           <label>
+                           <input type="radio" name="statusTask" id="priority" value="0" checked="checked" />
+                           Aberta
+                           </label>
+                        </div>
+                        <div class="radio">
+                           <label>
+                           <input type="radio" name="statusTask" value="1" />
+                           Finalizada
+                           </label>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label for="name" class="col-sm-3 control-label">
+                     <a href="javaScript:addInput();">
+                     Adicionar SubTarefa <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                     </a>
+                     </label>
+                     <div class="col-sm-9" id="boxInput"></div>
+                     <div class="col-sm-9" th:if="${task.listaSubTarefas}">
+                        <input th:each="subtask : ${task.listaSubTarefas}" type="text" name="listaSubTarefas" th:value="${subtask.subTaskName}" class="form-control input-sub"/>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <div class="col-sm-offset-2 col-sm-10">
+                        <input type="submit" class="btn btn-default" value="Ok" />
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <div class="dropup">
+         <div class="btn-group">
+            <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Menu de Configuracoes <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+               <li><a href="javascript:changeBackGroundColour();"><i class="fa fa-eyedropper"></i> Alterar cor do background</a></li>
+               <li><a href="javascript:changeSizeFont('plus');"><i class="fa fa-plus"></i> Aumentar Fonte</a></li>
+               <li><a href="javascript:changeSizeFont('minus');"><i class="fa fa-minus"></i> Diminuir Fonte</a></li>
+               <li><a href="javascript:restoreSettings();"><i class="fa fa-chevron-left"></i> Restaurar configura&ccedil;&otilde;es</a></li>
+               <li class="divider"></li>
+               <li><a href="#" th:href="@{/edituser/1}"><i class="fa fa-user"></i> Usuario</a></li>
+            </ul>
+         </div>
+      </div>
+   </body>
+</html>
