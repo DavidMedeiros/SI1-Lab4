@@ -21,7 +21,7 @@ public class ToDoListController {
 	@Autowired
 	TaskService taskService;
 	
-	private static final String TO_DO_LIST = "toDoList";
+	private static final String TO_DO_LIST = "todolist";
 	private static final String CURRENT_TASKS = "currentTasks";
 	private static final String FILTERED_TASKS = "filteredTasks";
 	private static final String QUANTITY_FILTERED = "quantityFiltered";
@@ -30,14 +30,14 @@ public class ToDoListController {
 	private static final String USER_DETAILS = "userDetails";
 	private static final String EDIT_USER = "edituser";
 	
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
 		model.addAttribute(TO_DO_LIST, taskService.getCurrentTasks());
 		model.addAttribute(CURRENT_TASKS, taskService.getQuantityTasks());
 		return TO_DO_LIST;
 	}
 
-	@RequestMapping(value = "/index", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String searchTask(@RequestParam String search,
 			@RequestParam int filter, Model model) {
 		model.addAttribute(TO_DO_LIST, taskService.getCurrentTasks());
