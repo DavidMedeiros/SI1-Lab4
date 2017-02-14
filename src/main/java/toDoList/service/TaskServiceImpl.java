@@ -27,8 +27,8 @@ public class TaskServiceImpl implements TaskService {
 			throw new IllegalArgumentException(EMPTY_TASK);
 		}
 	
-		String editedCategory = formatCategory(task.getCategory());
-		task.setCategory(editedCategory);
+//		String editedCategory = formatCategory(task.getCategory());
+//		task.setCategory(editedCategory);
 		taskRepository.save(task);
 	}
 
@@ -109,8 +109,8 @@ public class TaskServiceImpl implements TaskService {
 		boolean finished = false;
 		return taskRepository.getByStatusTask(finished).size();
 	}
-	
-	private String formatCategory(String word){
-		return word.substring(0,word.length()-1);
-	}
+//	
+//	private String formatCategory(String word){
+//		return word.substring(0,word.length()-1);
+//	}
 }
