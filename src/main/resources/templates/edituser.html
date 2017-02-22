@@ -34,33 +34,33 @@
          </div>
          <div class="panel panel-default">
             <div class="panel-heading">
-               <span th:text="${currentTasks}"/> <strong>Editar Contato</strong>
+               <span th:text="Editar"/> <strong>Editar Contato</strong>
             </div>
             <div class="panel-body">
-               <form class="form-horizontal" action="/updateuser" th:object="${user}" method="post" id="contact_form" enctype="multipart/form-data">
+               <form class="form-horizontal" enctype="multipart/form-data">
                   <fieldset>
                      <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Usuario:</label>
                         <div class="col-sm-10">
-                           <input th:value="${userDetails.userName}" name="userName" class="form-control" type="text" />
+                           <input th:value="David Souza" name="userName" class="form-control" type="text" />
                            <input type="hidden" name="userId" th:value="${userDetails.userId}" />
                         </div>
                      </div>
                      <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Email:</label>
                         <div class="col-sm-10">
-                           <input th:value="${userDetails.userEmail}" name="userEmail" class="form-control" type="text" />
+                           <input th:value="david.souza@ccc.ufcg.edu.br" name="userEmail" class="form-control" type="text" />
                         </div>
                      </div>
                      <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Pagina:</label>
                         <div class="col-sm-10">
-                           <input th:value="${userDetails.userPage}" name="userPage" class="form-control" type="text" />
+                           <input th:value="https://github.com/DavidMedeiros/" name="userPage" class="form-control" type="text" />
                         </div>
                      </div>
                      <div class="form-group">
                         <div class="col-sm-12">
-                           <input type="submit" class="btn btn-primary btn-add-new-task" value="Salvar" />
+                           <input type="submit" class="btn btn-primary btn-add-new-task" value="OK" />
                         </div>
                      </div>
                   </fieldset>
